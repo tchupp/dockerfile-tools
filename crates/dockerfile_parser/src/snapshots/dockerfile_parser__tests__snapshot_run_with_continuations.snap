@@ -1,0 +1,35 @@
+---
+source: crates/dockerfile_parser/src/tests.rs
+expression: "snapshot(\"RUN apt-get update \\\\\\n    && apt-get install -y curl \\\\\\n    && rm -rf /var/lib/apt/lists/*\\n\")"
+---
+DOCKERFILE@0..89
+  RUN_INSTR@0..88
+    WORD@0..3 "RUN"
+    WHITESPACE@3..4 " "
+    SHELL_FORM@4..88
+      WORD@4..11 "apt-get"
+      WHITESPACE@11..12 " "
+      WORD@12..18 "update"
+      WHITESPACE@18..19 " "
+      LINE_CONTINUATION@19..21 "\\\n"
+      WHITESPACE@21..25 "    "
+      WORD@25..27 "&&"
+      WHITESPACE@27..28 " "
+      WORD@28..35 "apt-get"
+      WHITESPACE@35..36 " "
+      WORD@36..43 "install"
+      WHITESPACE@43..44 " "
+      WORD@44..46 "-y"
+      WHITESPACE@46..47 " "
+      WORD@47..51 "curl"
+      WHITESPACE@51..52 " "
+      LINE_CONTINUATION@52..54 "\\\n"
+      WHITESPACE@54..58 "    "
+      WORD@58..60 "&&"
+      WHITESPACE@60..61 " "
+      WORD@61..63 "rm"
+      WHITESPACE@63..64 " "
+      WORD@64..67 "-rf"
+      WHITESPACE@67..68 " "
+      WORD@68..88 "/var/lib/apt/lists/*"
+  NEWLINE@88..89 "\n"

@@ -1,0 +1,18 @@
+[package]
+name = "dockerfile_parser"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+
+[dependencies]
+dockerfile_diagnostics.workspace = true
+dockerfile_lexer.workspace = true
+dockerfile_syntax.workspace = true
+rowan.workspace = true
+text-size.workspace = true
+
+[dev-dependencies]
+insta.workspace = true
+
+[lints]
+workspace = true

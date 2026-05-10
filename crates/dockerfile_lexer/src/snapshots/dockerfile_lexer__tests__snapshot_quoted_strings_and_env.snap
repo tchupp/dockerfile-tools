@@ -1,0 +1,17 @@
+---
+source: crates/dockerfile_lexer/src/tests.rs
+expression: "snapshot(\"ENV NAME=\\\"world\\\" GREETING='hello, world'\\nLABEL maintainer=\\\"ada@example.com\\\"\\n\")"
+---
+WORD@0..3 "ENV"
+WHITESPACE@3..4 " "
+WORD@4..9 "NAME="
+STRING@9..16 "\"world\""
+WHITESPACE@16..17 " "
+WORD@17..26 "GREETING="
+STRING@26..40 "'hello, world'"
+NEWLINE@40..41 "\\n"
+WORD@41..46 "LABEL"
+WHITESPACE@46..47 " "
+WORD@47..58 "maintainer="
+STRING@58..75 "\"ada@example.com\""
+NEWLINE@75..76 "\\n"

@@ -1,0 +1,19 @@
+---
+source: crates/dockerfile_parser/src/tests.rs
+expression: "snapshot(\"FOOBAR what\\nFROM rust\\n\")"
+---
+DOCKERFILE@0..22
+  INSTRUCTION@0..11
+    WORD@0..6 "FOOBAR"
+    WHITESPACE@6..7 " "
+    WORD@7..11 "what"
+  NEWLINE@11..12 "\n"
+  FROM_INSTR@12..21
+    WORD@12..16 "FROM"
+    WHITESPACE@16..17 " "
+    IMAGE_REF@17..21
+      WORD@17..21 "rust"
+  NEWLINE@21..22 "\n"
+
+--- diagnostics ---
+Warning @0..6: unknown Dockerfile instruction: "FOOBAR"

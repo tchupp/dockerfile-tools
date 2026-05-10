@@ -1,0 +1,71 @@
+---
+source: crates/dockerfile_parser/src/tests.rs
+expression: "snapshot(\"# syntax=docker/dockerfile:1\\n\\\n         # escape=\\\\\\n\\\n         FROM rust:1.80-alpine AS builder\\n\\\n         WORKDIR /app\\n\\\n         COPY . .\\n\\\n         RUN cargo build --release\\n\\\n         \\n\\\n         FROM debian:bookworm-slim\\n\\\n         COPY --from=builder /app/target/release/myapp /usr/local/bin/myapp\\n\\\n         ENTRYPOINT [\\\"/usr/local/bin/myapp\\\"]\\n\")"
+---
+DOCKERFILE@0..251
+  PARSER_DIRECTIVE@0..28
+    COMMENT@0..28 "# syntax=docker/docke ..."
+  NEWLINE@28..29 "\n"
+  PARSER_DIRECTIVE@29..39
+    COMMENT@29..39 "# escape=\\"
+  NEWLINE@39..40 "\n"
+  FROM_INSTR@40..72
+    WORD@40..44 "FROM"
+    WHITESPACE@44..45 " "
+    IMAGE_REF@45..61
+      WORD@45..61 "rust:1.80-alpine"
+    WHITESPACE@61..62 " "
+    WORD@62..64 "AS"
+    WHITESPACE@64..65 " "
+    STAGE_NAME@65..72
+      WORD@65..72 "builder"
+  NEWLINE@72..73 "\n"
+  WORKDIR_INSTR@73..85
+    WORD@73..80 "WORKDIR"
+    WHITESPACE@80..81 " "
+    WORD@81..85 "/app"
+  NEWLINE@85..86 "\n"
+  COPY_INSTR@86..94
+    WORD@86..90 "COPY"
+    WHITESPACE@90..91 " "
+    WORD@91..92 "."
+    WHITESPACE@92..93 " "
+    WORD@93..94 "."
+  NEWLINE@94..95 "\n"
+  RUN_INSTR@95..120
+    WORD@95..98 "RUN"
+    WHITESPACE@98..99 " "
+    SHELL_FORM@99..120
+      WORD@99..104 "cargo"
+      WHITESPACE@104..105 " "
+      WORD@105..110 "build"
+      WHITESPACE@110..111 " "
+      WORD@111..120 "--release"
+  NEWLINE@120..121 "\n"
+  NEWLINE@121..122 "\n"
+  FROM_INSTR@122..147
+    WORD@122..126 "FROM"
+    WHITESPACE@126..127 " "
+    IMAGE_REF@127..147
+      WORD@127..147 "debian:bookworm-slim"
+  NEWLINE@147..148 "\n"
+  COPY_INSTR@148..214
+    WORD@148..152 "COPY"
+    WHITESPACE@152..153 " "
+    FLAG@153..167
+      WORD@153..159 "--from"
+      EQUALS@159..160 "="
+      WORD@160..167 "builder"
+    WHITESPACE@167..168 " "
+    WORD@168..193 "/app/target/release/m ..."
+    WHITESPACE@193..194 " "
+    WORD@194..214 "/usr/local/bin/myapp"
+  NEWLINE@214..215 "\n"
+  ENTRYPOINT_INSTR@215..250
+    WORD@215..225 "ENTRYPOINT"
+    WHITESPACE@225..226 " "
+    EXEC_FORM@226..250
+      WORD@226..227 "["
+      STRING@227..249 "\"/usr/local/bin/myapp\""
+      WORD@249..250 "]"
+  NEWLINE@250..251 "\n"

@@ -1,0 +1,11 @@
+[package]
+name = "dockerfile_syntax"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+
+[dependencies]
+rowan.workspace = true
+
+[lints]
+workspace = true

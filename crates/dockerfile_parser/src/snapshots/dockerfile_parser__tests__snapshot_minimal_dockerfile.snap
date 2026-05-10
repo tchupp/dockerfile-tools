@@ -1,0 +1,11 @@
+---
+source: crates/dockerfile_parser/src/tests.rs
+expression: "snapshot(\"FROM rust:1.80\\n\")"
+---
+DOCKERFILE@0..15
+  FROM_INSTR@0..14
+    WORD@0..4 "FROM"
+    WHITESPACE@4..5 " "
+    IMAGE_REF@5..14
+      WORD@5..14 "rust:1.80"
+  NEWLINE@14..15 "\n"

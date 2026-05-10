@@ -1,0 +1,39 @@
+---
+source: crates/dockerfile_parser/src/tests.rs
+expression: "snapshot(\"ARG VERSION=1.0\\nENV PATH=/bin:/usr/bin LANG=en_US.UTF-8\\nLABEL maintainer=\\\"ada@example.com\\\" version=$VERSION\\n\")"
+---
+DOCKERFILE@0..108
+  ARG_INSTR@0..15
+    WORD@0..3 "ARG"
+    WHITESPACE@3..4 " "
+    KEY_VALUE@4..15
+      WORD@4..11 "VERSION"
+      EQUALS@11..12 "="
+      WORD@12..15 "1.0"
+  NEWLINE@15..16 "\n"
+  ENV_INSTR@16..55
+    WORD@16..19 "ENV"
+    WHITESPACE@19..20 " "
+    KEY_VALUE@20..38
+      WORD@20..24 "PATH"
+      EQUALS@24..25 "="
+      WORD@25..38 "/bin:/usr/bin"
+    WHITESPACE@38..39 " "
+    KEY_VALUE@39..55
+      WORD@39..43 "LANG"
+      EQUALS@43..44 "="
+      WORD@44..55 "en_US.UTF-8"
+  NEWLINE@55..56 "\n"
+  LABEL_INSTR@56..107
+    WORD@56..61 "LABEL"
+    WHITESPACE@61..62 " "
+    KEY_VALUE@62..90
+      WORD@62..72 "maintainer"
+      EQUALS@72..73 "="
+      STRING@73..90 "\"ada@example.com\""
+    WHITESPACE@90..91 " "
+    KEY_VALUE@91..107
+      WORD@91..98 "version"
+      EQUALS@98..99 "="
+      WORD@99..107 "$VERSION"
+  NEWLINE@107..108 "\n"

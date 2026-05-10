@@ -1,0 +1,15 @@
+[package]
+name = "dockerfile_lexer"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+
+[dependencies]
+dockerfile_syntax.workspace = true
+text-size.workspace = true
+
+[dev-dependencies]
+insta.workspace = true
+
+[lints]
+workspace = true
